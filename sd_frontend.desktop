@@ -1,0 +1,8 @@
+[Desktop Entry]
+Type=Service
+ServiceTypes=Krita/PythonPlugin
+X-KDE-Library=sd_frontend
+X-Python-2-Compatible=false
+X-Krita-Manual=Manual.html
+Name=SD_frontend
+Comment=a frontend for the Stable Diffusion WebUI

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ActionCollection version="2" name="Scripts">
+    <Actions category="Scripts">
+        <text>SD Frontend</text>
+
+        <Action name="sdCheckReady">
+            <icon/>
+            <text>SD Frontend check requirements</text>
+            <whatsThis/>
+            <toolTip/>
+            <iconText/>
+            <activationFlags>00000</activationFlags>
+            <activationConditions>0</activationConditions>
+            <shortcut>ctrl+alt+q</shortcut>
+            <isCheckable>true</isCheckable>
+            <statusTip/>
+        </Action>
+        <Action name="sdGenerate">
+            <icon/>
+            <text>SD Frontend generate</text>
+            <whatsThis/>
+            <toolTip/>
+            <iconText/>
+            <activationFlags>00000</activationFlags>
+            <activationConditions>0</activationConditions>
+            <shortcut>ctrl+alt+e</shortcut>
+            <isCheckable>true</isCheckable>
+            <statusTip/>
+        </Action>
+    </Actions>
+</ActionCollection>

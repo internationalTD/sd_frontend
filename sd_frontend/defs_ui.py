@@ -11,9 +11,8 @@ import copy
 from krita import *
 from .defs import *
 from .utils import *
-
+from . import config
 #ui_priority_config = QSettings(QSettings.IniFormat, QSettings.UserScope, "krita", "sd_frontend_ui")
-config = QSettings(QSettings.IniFormat, QSettings.UserScope, "krita", "sd_frontend_ui")
 
 
 samplers = ["Euler a", "Euler", 'LMS', 'Heun', 'DPM2', 'DPM2 a', 'DDIM', 'PLMS']

@@ -12,9 +12,8 @@ import re
 from krita import *
 from .defs import *
 from . import defs_ui
+from . import config
 DOCKER_ID = 'pykrita_sd_frontend'
-
-config = QSettings(QSettings.IniFormat, QSettings.UserScope, "krita", "sd_frontend")
 
 CoolIcon = QIcon() #TODO lol
 
@@ -109,8 +108,8 @@ def kritaGetActives():
 
 def queue_predict(body):
 
-    req = urllib.request.Request(
-      config.value("base_url", type=str) + '/api/predict')
+    req = urllib.request.Request(config.base_url)
+
     body_encoded = json.dumps(body).encode('utf-8')
     req.data=body_encoded
     req.add_header('Content-Type', 'application/json')

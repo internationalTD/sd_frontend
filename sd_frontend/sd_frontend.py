@@ -13,13 +13,8 @@ from krita import *
 from .defs import *
 from .utils import *
 from . import ui
+from . import config
 
-default_url = "http://127.0.0.1:7860"
-
-samplers = ["Euler a", "Euler", 'LMS', 'Heun', 'DPM2', 'DPM2 a', 'DDIM', 'PLMS']
-samplers_img2img = ["Euler a", "Euler", 'LMS', 'Heun', 'DPM2', 'DPM2 a', 'DDIM']
-upscalers = ["None", "Lanczos"]
-realesrgan_models = ['RealESRGAN_x4plus', 'RealESRGAN_x4plus_anime_6B']
 
 DOCKER_NAME = 'sd frontend'
 DOCKER_ID = 'pykrita_sd_frontend'
@@ -51,7 +46,7 @@ class MyExtension(Extension):
         sdCheckReady_action = window.createAction("sdCheckReady", "SD Check requirements and fix", "tools/scripts")
         def f():
 
-            toast(" mem")
+
             docker = self.getDocker()
             mode = docker.tabWidget.tabText( docker.tabWidget.currentIndex()) 
             loop_max = 32
@@ -63,14 +58,12 @@ class MyExtension(Extension):
 
         sdGenerate_action = window.createAction("sdGenerate", "SD Generate if ready", "tools/scripts")
         def f2():
-            toastError(" lol")
             docker = self.getDocker()
             mode = docker.tabWidget.tabText( docker.tabWidget.currentIndex()) 
             docker.generate()
         sdGenerate_action.triggered.connect(f2)
 
 
-config = QSettings(QSettings.IniFormat, QSettings.UserScope, "krita", "sd_frontend")
 
 def box4var(label,list):
     gbox = QGroupBox(label)
@@ -261,7 +254,7 @@ class SD_frontend(DockWidget):
         d,n,s = kritaGetActives()
 
         if not d: 
-            print("no document open - opening dialog")
+            toast("no document open - opening dialog")
             Krita.instance().action("file_new").trigger()
             return False
 
@@ -270,23 +263,24 @@ class SD_frontend(DockWidget):
             
             #if the active layer has useful bounds
             rect = n.bounds()
-            if rect.width()%64 == 0 and rect.height()%64 ==0:
+            print(rect.width())
+            if rect.width() != 0 and rect.height() != 0 and rect.width()%64 == 0 and rect.height()%64 ==0:
                 s=Selection()  
                 s.select(rect.x(), rect.y(), rect.width(), rect.height(), 255)
                 d.setSelection(s)
                 print("no selection had been made - selected the active layer")
                 return False    
-
+            
             s=Selection()  
             s.select(0, 0, 512, 512, 255)
             d.setSelection(s)
-            print("no selection had been made - selected 512,512 in top left corner")
+            toast("no selection had been made - selected 512,512 in top left corner")
             return False
         
         mod_w, mod_h = s.width()%64, s.height()%64
 
         if mod_w != 0 or mod_h !=0:
-            print("selection was not multiple of 64 - resized")
+            toast("selection was not multiple of 64 - resized")
 
             newx = s.x()-(64-mod_w)
             newy = s.y()-(64-mod_h)
@@ -294,11 +288,11 @@ class SD_frontend(DockWidget):
             neww = s.width()+(64-mod_w)
             newh = s.height()+(64-mod_h)
 
-            neww = max(config.value("min_size", type=int),neww)
-            newh = max(config.value("min_size", type=int),newh)
+            neww = max(config.min_size,neww)
+            newh = max(config.min_size,newh)
 
-            neww = min(config.value("max_size", type=int),neww)
-            newh = min(config.value("max_size", type=int),newh)
+            neww = min(config.max_size,neww)
+            newh = min(config.max_size,newh)
 
             s=Selection() 
             s.select(newx, newy, neww, newh, 255)
@@ -313,7 +307,7 @@ class SD_frontend(DockWidget):
 
             mask = d.nodeByName("!sdmask")
             if not mask or not mask.visible():
-                print("mask needed - creating layer")
+                toast("mask needed - created visible layer called !sdmask")
                 
                 mask=d.createNode("!sdmask", "paintlayer")
                 mask.setOpacity(128)
@@ -333,6 +327,7 @@ class SD_frontend(DockWidget):
             """
             
         #if everything is ok
+        toast("READY - all requirements met")
         return True    
 
     def recycle(self):
@@ -357,7 +352,7 @@ class SD_frontend(DockWidget):
             #print("all requirements good to go")
             pass
         else:
-            #print("requirements needed fixing, click again to generate")
+            #toast("requirements needed fixing, click again to generate")
             return
         
 

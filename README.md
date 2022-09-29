@@ -17,7 +17,7 @@ A Docker Panel in Krita that can interface with [this Stable Diffusion WebUI hos
 
 
 
-#Installation
+# Installation
 
 * __Copy this url to your clipboard:__ `https://github.com/internationalTD/sd_frontend/archive/refs/heads/main.zip`
 
@@ -33,11 +33,11 @@ A Docker Panel in Krita that can interface with [this Stable Diffusion WebUI hos
 
 * __Finally, Restart Krita__
 
-#Usage
+# Usage
 
-###Start the WebUI with webui_user.bat as usual and just open Krita to generate.
+### Start the WebUI with webui_user.bat as usual and just open Krita to generate.
 
-###Quick Test
+### Quick Test
 To test the installation, we are going to create any size document, then an exactly 512x512 selection, and finally generate an output with Text2Image. Here is how to do that:
 
 1. Press CTRL+ALT+E and follow instructions, if any.
@@ -45,7 +45,7 @@ To test the installation, we are going to create any size document, then an exac
 2. Press CTRL+ALT+E and follow instructions, if any.
 
 
-###Beginner Tips
+### Beginner Tips
 
 1. Use the requirement fixer hotkey <kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>Q</kbd> to work fast:
     * hit __<kbd>CTRL</kbd>+<kbd>ALT</kbd>+<kbd>Q</kbd>__, then __Ctrl+R__ to switch to the Selection Tool and drag the edge to move the selection to where you want it.

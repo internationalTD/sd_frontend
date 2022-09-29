@@ -19,7 +19,7 @@ A Docker Panel in Krita that can interface with [this Stable Diffusion WebUI hos
 
 #Installation
 
-* __Copy the url to your clipboard:__ `https://github.com/internationalTD/sd_frontend`
+* __Copy this url to your clipboard:__ `https://github.com/internationalTD/sd_frontend/archive/refs/heads/main.zip`
 
 * __Paste the link into Krita and activate the plugin__
 

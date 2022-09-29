@@ -35,6 +35,8 @@ A Docker Panel in Krita that can interface with [this Stable Diffusion WebUI hos
 
 #Usage
 
+###Start the WebUI with webui_user.bat as usual and just open Krita to generate.
+
 ###Quick Test
 To test the installation, we are going to create any size document, then an exactly 512x512 selection, and finally generate an output with Text2Image. Here is how to do that:
 

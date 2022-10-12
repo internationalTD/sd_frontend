@@ -1,5 +1,7 @@
-# Stable Diffusion Krita Front-End
+# This is the old version - I will release the updated version for PS + Krita shortly. Sorry for the wait!
 
+
+### Stable Diffusion Krita Front-End
 A Docker Panel in Krita that can interface with [this Stable Diffusion WebUI host](https://github.com/AUTOMATIC1111/stable-diffusion-webui), so you can use all the amazing Stable Diffusion features you know and love from inside a real Digital Art Application!
 * Text 2 Image
 * Image 2 Image
